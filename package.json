@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "format:check": "prettier --check \"**/*.{ts,tsx,scss,css}\"",
-    "format:fix": "prettier --write \"**/*.{ts,tsx,json,scss,css}\""
+    "format:fix": "prettier --write \"**/*.{ts,tsx,json,scss,css}\"",
+    "prepare": "husky"
   },
   "husky": {
     "hooks": {
