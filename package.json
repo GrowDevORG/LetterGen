@@ -10,6 +10,16 @@
     "format:check": "prettier --check \"**/*.{ts,tsx,scss,css}\"",
     "format:fix": "prettier --write \"**/*.{ts,tsx,json,scss,css}\""
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx,js,jsx,md,mdx,css}": [
+      "prettier --write"
+    ]
+  },
   "dependencies": {
     "@prisma/client": "^6.3.1",
     "@radix-ui/react-dropdown-menu": "^2.1.5",
