@@ -1,3 +1,5 @@
+# LetterGen
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
@@ -31,6 +33,41 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Check out [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Contributors
+
+- [krey-yon](https://github.com/krey-yon)
+- [arunprajapati-arch](https://github.com/arunprajapati-arch)
+- [xOAviOx](https://github.com/xOAviOx)
+
+---
+
+<details>
+<summary>Dummy data for letter-gen api route</summary>
+
+```json
+{
+  "age": 28,
+  "skills": ["JavaScript", "React", "Node.js", "TypeScript"],
+  "experience": [
+    {
+      "company": "Tech Corp",
+      "role": "Frontend Developer",
+      "duration": "2 years",
+      "description": "Developed responsive web applications using React"
+    }
+  ],
+  "education": {
+    "degree": "Bachelor of Computer Science",
+    "institution": "University of Technology",
+    "year": "2020"
+  },
+  "targetRole": "Senior Frontend Developer",
+  "targetCompany": "Dream Tech Inc"
+}
+```
+
+</details>
