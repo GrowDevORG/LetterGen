@@ -70,3 +70,13 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  .bg-radial-gradient {
+    background: radial-gradient(
+      circle at center,
+      rgba(0, 0, 255, 0.3) 0%,
+      rgba(0, 0, 0, 0) 70%
+    );
+  }
+}
