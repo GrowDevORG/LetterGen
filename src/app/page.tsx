@@ -1,5 +1,6 @@
 'use client';
-import { useSession, signIn, signOut } from 'next-auth/react';
+import HeroSection from '@/pages/HeroSection';
+import { useSession, signOut } from 'next-auth/react';
 
 export default function Home() {
   const { data: session } = useSession();
@@ -12,9 +13,10 @@ export default function Home() {
     );
   }
   return (
-    <>
-      Not signed in <br />
-      <button onClick={() => signIn()}>Sign in</button>
-    </>
+    <main className="flex flex-col py-2 bg-gray-100">
+      {/* Not signed in <br />
+      <button onClick={() => signIn()}>Sign in</button> */}
+      <HeroSection />
+    </main>
   );
 }
