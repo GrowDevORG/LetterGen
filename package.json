@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "format:check": "prettier --check \"**/*.{ts,tsx,scss,css}\"",
-    "format:fix": "prettier --write \"**/*.{ts,tsx,json,scss,css}\""
+    "format:fix": "prettier --write \"**/*.{ts,tsx,json,scss,css}\"",
+    "prepare": "husky"
   },
   "husky": {
     "hooks": {
@@ -21,6 +22,7 @@
     ]
   },
   "dependencies": {
+    "@google/generative-ai": "^0.21.0",
     "@prisma/client": "^6.3.1",
     "@radix-ui/react-dropdown-menu": "^2.1.5",
     "@radix-ui/react-slot": "^1.1.1",
