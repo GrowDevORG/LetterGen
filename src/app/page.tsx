@@ -1,5 +1,6 @@
 'use client';
 import HeroSection from '@/pages/HeroSection';
+import HowItWork from '@/pages/HowItWork';
 import { useSession, signOut } from 'next-auth/react';
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
       {/* Not signed in <br />
       <button onClick={() => signIn()}>Sign in</button> */}
       <HeroSection />
+      <HowItWork />
     </main>
   );
 }
