@@ -19,7 +19,7 @@ interface CoverLetterRequest {
   targetCompany: string;
 }
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
+const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GEMINI_API || '');
 
 export async function POST(request: Request) {
   try {
@@ -37,33 +37,42 @@ export async function POST(request: Request) {
       );
     }
 
-    const prompt = `Generate a professional cover letter for a ${body.targetRole} position at ${body.targetCompany} with the following details:
+    const prompt = `
+    Generate a professional cover letter for the following job opportunity:
 
-Background:
-- Age: ${body.age}
-- Skills: ${body.skills.join(', ')}
+    ##Job Details:
+    - **Position:** ${body.targetRole}
+    - **Company:** ${body.targetCompany}
 
-Experience:
-${body.experience
-  .map(
-    (exp) => `- ${exp.role} at ${exp.company} (${exp.duration})
-  ${exp.description}`
-  )
-  .join('\n')}
+    ##Background:
+   - **Age:** ${body.age}
+   - **Skills:** ${body.skills.join(', ')}
 
-Education:
-- ${body.education.degree} from ${body.education.institution} (${body.education.year})
+    ##Experience:
+    ${body.experience
+      .map(
+        (exp) => `- ${exp.role} at ${exp.company} (${exp.duration})
+    ${exp.description}`
+      )
+      .join('\n')}
 
-Please create a compelling cover letter that:
-1. Highlights relevant skills and experience
-2. Shows enthusiasm for ${body.targetCompany}
-3. Explains why I'm a good fit for the ${body.targetRole} position
-4. Maintains a professional yet engaging tone
-5. Keeps the length to one long paragraph
-6. Don't add dummy data or placeholder text in the cover letter and create cover letter only based on the provided information.`;
+   ##Education:
+   - **Degree:** ${body.education.degree}
+   - **Institution:** ${body.education.institution} 
+   - **Year:** ${body.education.year}
 
+  ##Instructions
+- Highlights relevant skills and experience
+- Shows enthusiasm for ${body.targetCompany}
+- Explains why I'm a good fit for the ${body.targetRole} position
+- Maintains a professional yet engaging tone
+- Keeps the length to one long paragraph
+- Atleast 200 words
+- Avoid using any placeholder details such as [Your Name],[Platform],[responsibilities] . The generated cover letter must contain actual details.
+- Ensure proper spacing throughout the cover letter and no newline characters : "\n" or "\" in the response anywhere.
+- Avoid any text enclosed in []`;
     const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
-    const result = await model.generateContent(prompt);
+    const result = await model.generateContent([prompt]);
     const response = await result.response;
     const text = response.text();
 
