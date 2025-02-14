@@ -11,7 +11,7 @@ const HeroSection = () => {
         <h1 className="text-4xl font-extrabold text-center text-black mt-24">
           Craft Perfect Cover <br /> Letters in Seconds <br /> with AI
         </h1>
-        <p className="text-black text-center mt-4 ">
+        <p className="text-black text-center mt-4">
           Say goodbye to the stress of writing cover letters, Our AI-powered
           generator creates personalized, <br /> professional cover letters
           tailored to your skills, <br /> experience, and the job you&apos;re
