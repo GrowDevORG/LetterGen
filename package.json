@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development next dev",
-    "build": "cross-env NODE_ENV=production next build",
+    "build": "cross-env NODE_ENV=production next build && npm run generate",
     "start": "cross-env NODE_ENV=production next start",
+    "generate" : "npx prisma generate",
     "lint": "next lint",
     "format:check": "prettier --check \"**/*.{ts,tsx,scss,css}\"",
     "format:fix": "prettier --write \"**/*.{ts,tsx,json,scss,css}\"",
