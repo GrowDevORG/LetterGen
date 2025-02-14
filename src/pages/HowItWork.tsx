@@ -85,7 +85,7 @@ const HowItWork = () => {
               </h5>
               <p className="text-md text-[#344054] leading-7">
                 Enter the necessary job details to personalize your cover letter
-                according to the specific role you're applying for.
+                according to the specific role you&apos;re applying for.
               </p>
             </div>
             <div className="w-full sm:w-[70%] md:w-1/2 lg:w-1/3">
