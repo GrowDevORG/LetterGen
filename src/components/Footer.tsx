@@ -7,8 +7,8 @@ import '../app/globals.css';
 
 const Footer = () => {
   return (
-    <footer className="bg-blue-900  pt-8 relative">
-      <div className="flex justify-evenly  gap-4">
+    <footer className="bg-blue-900 pt-8 relative">
+      <div className="flex flex-col md:flex-row md:justify-evenly gap-6 px-6">
         <div>
           <div className="text-2xl">LetterGen</div>
           <ul className="flex gap-8 mt-4 list-none">
