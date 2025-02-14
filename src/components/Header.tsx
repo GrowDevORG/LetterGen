@@ -22,11 +22,11 @@ const Header = () => {
       <div className=" flex flex-row gap-6">
         <button
           onClick={() => signIn()}
-          className="text-sm border border-black rounded-md text-black px-2"
+          className="border border-black rounded-md py-1 text-black px-2"
         >
           Sign In
         </button>
-        <button className="text-white text-sm bg-blue-500 rounded-md px-2">
+        <button className="text-white py-1 bg-blue-500 rounded-md px-2">
           Sign Up
         </button>
       </div>

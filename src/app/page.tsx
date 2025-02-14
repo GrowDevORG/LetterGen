@@ -1,4 +1,5 @@
 'use client';
+import Footer from '@/components/Footer';
 import HeroSection from '@/pages/HeroSection';
 import HowItWork from '@/pages/HowItWork';
 import { useSession, signOut } from 'next-auth/react';
@@ -14,11 +15,12 @@ export default function Home() {
     );
   }
   return (
-    <main className="flex flex-col py-2 bg-gray-100">
+    <main className="flex flex-col bg-gray-100">
       {/* Not signed in <br />
       <button onClick={() => signIn()}>Sign in</button> */}
       <HeroSection />
       <HowItWork />
+      <Footer />
     </main>
   );
 }
