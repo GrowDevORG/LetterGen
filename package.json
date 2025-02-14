@@ -9,7 +9,8 @@
     "lint": "next lint",
     "format:check": "prettier --check \"**/*.{ts,tsx,scss,css}\"",
     "format:fix": "prettier --write \"**/*.{ts,tsx,json,scss,css}\"",
-    "prepare": "husky"
+    "prepare": "husky",
+    "postinstall": "prisma generate"
   },
   "husky": {
     "hooks": {
