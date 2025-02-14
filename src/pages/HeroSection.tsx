@@ -5,9 +5,9 @@ import { MoveRight } from 'lucide-react';
 
 const HeroSection = () => {
   return (
-    <section className="bg-gray-100 flex flex-col">
+    <section className="bg-gray-100 flex flex-col bg-radial-gradient">
       <Header />
-      <div className="bg-radial-gradient flex flex-col items-center h-screen">
+      <div className=" flex flex-col items-center h-screen">
         <h1 className="text-4xl font-extrabold text-center text-black mt-24">
           Craft Perfect Cover <br /> Letters in Seconds <br /> with AI
         </h1>
