@@ -28,10 +28,8 @@ const Footer = () => {
         </div>
         <div className="grid grid-cols-4 gap-4 sm:gap-6">
           <div>
-            <div className="text-sm md:text-xl lg:text-xl py-2">
-              Quick Links
-            </div>
-            <ul className="flex flex-col text-sm md:text-xl lg:text-xl gap-4 mt-3 list-none">
+            <div className="text-responsive-footer py-2">Quick Links</div>
+            <ul className="flex flex-col text-responsive-footer gap-4 mt-3 list-none">
               <li>Home</li>
               <li>How It Works</li>
               <li>About us</li>
@@ -40,23 +38,23 @@ const Footer = () => {
             </ul>
           </div>
           <div>
-            <div className="text-sm md:text-xl lg:text-xl py-2">Legal</div>
-            <ul className="flex flex-col text-sm md:text-xl lg:text-xl gap-4 mt-3 list-none">
+            <div className="text-responsive-footer py-2">Legal</div>
+            <ul className="flex flex-col text-responsive-footer gap-4 mt-3 list-none">
               <li>Privacy Policy</li>
               <li>Terms of service</li>
             </ul>
           </div>
           <div>
-            <div className="text-sm md:text-xl lg:text-xl py-2"> Support</div>
-            <ul className="flex flex-col text-sm md:text-xl lg:text-xl mt-3 gap-4 list-none">
+            <div className="text-responsive-footer py-2"> Support</div>
+            <ul className="flex flex-col text-responsive-footer mt-3 gap-4 list-none">
               <li>Help Center</li>
               <li>Contact support</li>
               <li>Feedback</li>
             </ul>
           </div>
           <div>
-            <div className="text-sm md:text-xl lg:text-xl py-2">Resources</div>
-            <ul className="flex flex-col text-sm md:text-xl lg:text-xl gap-4 mt-3 list-none">
+            <div className="text-responsive-footer py-2">Resources</div>
+            <ul className="flex flex-col text-responsive-footer gap-4 mt-3 list-none">
               <li>Blog</li>
               <li>Career</li>
               <li>Template library</li>

@@ -5,7 +5,7 @@ import { TextLoop } from './ui/text-loop';
 const Header = () => {
   return (
     <nav className="flex flex-row justify-between items-center p-4 border-b border-gray-200 w-full">
-      <div className="font-bold text-2xl text-blue-500 w-[10%]">
+      <div className="font-bold text-md md:text-2xl lg:text-2xl text-blue-500 w-[10%]">
         <TextLoop>
           <span>LetterGen</span>
           <span>लेटर Gen</span>
@@ -19,14 +19,14 @@ const Header = () => {
           <li className="group-hover:cursor-pointer">About us</li>
         </ul>
       </div>
-      <div className=" flex flex-row gap-6">
+      <div className="flex flex-row gap-6">
         <button
           onClick={() => signIn()}
-          className="border border-black rounded-md py-1 text-black px-2"
+          className="border border-black text-sm md:text-base lg:text-base rounded-md py-1 text-black px-2"
         >
           Sign In
         </button>
-        <button className="text-white py-1 bg-blue-500 rounded-md px-2">
+        <button className="text-white text-sm md:text-base lg:text-base py-1 bg-blue-500 rounded-md px-2">
           Sign Up
         </button>
       </div>
