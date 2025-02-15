@@ -12,7 +12,7 @@ const Header = () => {
         </TextLoop>
       </div>
       <div>
-        <ul className="list-none text-[#767b7c] gap-14 flex flex-row items-center group justify-center text-xl font-sans">
+        <ul className="hidden list-none text-[#767b7c] gap-14 lg:flex md:flex flex-row items-center group justify-center text-xl font-sans">
           <li className="group-hover:cursor-pointer">Features</li>
           <li className="group-hover:cursor-pointer">Pricing</li>
           <li className="group-hover:cursor-pointer">Contact sales</li>
