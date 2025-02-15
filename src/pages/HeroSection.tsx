@@ -5,7 +5,7 @@ import { MoveRight } from 'lucide-react';
 
 const HeroSection = () => {
   return (
-    <section className="bg-gray-100 flex flex-col bg-radial-gradient">
+    <section className="bg-gray-100 flex flex-col bg-radial-gradient overflow-x-hidden">
       <Header />
       <div className=" flex flex-col items-center h-screen">
         <h1 className="text-4xl font-extrabold text-center text-black mt-24">
