@@ -151,6 +151,16 @@
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
+  .text-responsive-footer {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .text-responsive-footer {
+      font-size: 1.25rem;
+      line-height: 1.755rem;
+    }
+  }
 }
 
 @layer base {

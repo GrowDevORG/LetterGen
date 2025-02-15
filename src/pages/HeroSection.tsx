@@ -5,13 +5,13 @@ import { MoveRight } from 'lucide-react';
 
 const HeroSection = () => {
   return (
-    <section className="bg-gray-100 flex flex-col bg-radial-gradient">
+    <section className="bg-gray-100 flex flex-col bg-radial-gradient overflow-x-hidden">
       <Header />
       <div className=" flex flex-col items-center h-screen">
         <h1 className="text-4xl font-extrabold text-center text-black mt-24">
           Craft Perfect Cover <br /> Letters in Seconds <br /> with AI
         </h1>
-        <p className="text-black text-center mt-4">
+        <p className="text-black text-center text-sm p-2 md:text-base lg:text-base md:p-0 lg:p-0 mt-4">
           Say goodbye to the stress of writing cover letters, Our AI-powered
           generator creates personalized, <br /> professional cover letters
           tailored to your skills, <br /> experience, and the job you&apos;re
