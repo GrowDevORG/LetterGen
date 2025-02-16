@@ -152,7 +152,7 @@
     --chart-5: 340 75% 55%;
   }
   .text-responsive-footer {
-    font-size: 0.875rem;
+    font-size: 0.675rem;
     line-height: 1.25rem;
   }
   @media (min-width: 768px) {
