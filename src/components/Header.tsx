@@ -22,9 +22,7 @@ const Header = () => {
           <ul className="list-none text-[#767b7c] md:gap-14 sm:gap-6 flex flex-row items-center group justify-center sm:text-sm md:text-base lg:text-lg xl:text-xl font-sans md:ml-10 xl:ml-0">
             <li className="group-hover:cursor-pointer">Features</li>
             <li className="group-hover:cursor-pointer">Pricing</li>
-            <li className="group-hover:cursor-pointer">Contact sales</li>Once
-            that’s done, you can proceed to work on your feature branch (e.g.,
-            feature-branch) and resolve conflicts if needed.
+            <li className="group-hover:cursor-pointer">Contact sales</li>
             <li className="group-hover:cursor-pointer">About us</li>
           </ul>
         </div>

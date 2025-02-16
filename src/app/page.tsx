@@ -1,7 +1,9 @@
 'use client';
+import Divider from '@/components/Divider';
 import Footer from '@/components/Footer';
 import HeroSection from '@/pages/HeroSection';
 import HowItWork from '@/pages/HowItWork';
+import InfoPage from '@/pages/InfoPage';
 import { useSession, signOut } from 'next-auth/react';
 
 export default function Home() {
@@ -20,6 +22,9 @@ export default function Home() {
       <button onClick={() => signIn()}>Sign in</button> */}
       <HeroSection />
       <HowItWork />
+      <Divider />
+      <InfoPage />
+      <Divider />
       <Footer />
     </main>
   );
