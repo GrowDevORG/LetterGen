@@ -24,6 +24,7 @@ export default function Home() {
       <HowItWork />
       <Divider />
       <InfoPage />
+      <Divider />
       <Footer />
     </main>
   );
