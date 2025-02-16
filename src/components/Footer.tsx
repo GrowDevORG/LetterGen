@@ -26,7 +26,7 @@ const Footer = () => {
             </li>
           </ul>
         </div>
-        <div className="grid grid-cols-4 gap-4 sm:gap-6">
+        <div className="grid grid-cols-4 gap-10 mb-2 sm:gap-6">
           <div>
             <div className="text-responsive-footer py-2">Quick Links</div>
             <ul className="flex flex-col text-responsive-footer gap-4 mt-3 list-none">
@@ -62,7 +62,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="relative h-20">
+      <div className="relative z-0">
         <div className="wave wave1"></div>
         <div className="wave wave2"></div>
         <div className="wave wave3"></div>
