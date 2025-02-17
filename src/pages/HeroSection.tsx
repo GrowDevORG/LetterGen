@@ -17,8 +17,9 @@ const HeroSection = () => {
           tailored to your skills, <br /> experience, and the job you&apos;re
           applying for—instantly!
         </p>
-        <button className="bg-blue-500 text-white font-extralight px-4 py-2 rounded-sm mt-4">
-          Get started <MoveRight className="inline ml-1" />
+        <button className="bg-blue-500 text-white font-extralight px-4 py-2 transition-all duration-150 rounded-sm mt-4 group hover:scale-105 hover:bg-blue-600">
+          Get started{' '}
+          <MoveRight className="inline ml-1 duration-150 group-hover:translate-x-2" />
         </button>
         <Image
           src="/image/hero-image.png"

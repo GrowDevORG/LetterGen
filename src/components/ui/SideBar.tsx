@@ -2,9 +2,13 @@ import React, { useEffect } from 'react';
 import Image from 'next/image';
 import ArrowOutlined from '@public/image/ArrowOutlined.svg';
 import { signIn } from 'next-auth/react';
+import { Session } from 'next-auth';
+import { Avatar, AvatarFallback, AvatarImage } from './avatar';
 
 interface SideBarProps {
   isOpen: boolean;
+  status: 'authenticated' | 'loading' | 'unauthenticated';
+  session: Session;
 }
 
 const MenuItem = ({ label }: { label: string }) => (
@@ -14,14 +18,13 @@ const MenuItem = ({ label }: { label: string }) => (
   </li>
 );
 
-const SideBar = ({ isOpen }: SideBarProps) => {
+const SideBar = ({ isOpen, status, session }: SideBarProps) => {
   useEffect(() => {
     if (isOpen) {
       document.body.classList.add('no-scroll');
     } else {
       document.body.classList.remove('no-scroll');
     }
-
     return () => document.body.classList.remove('no-scroll');
   }, [isOpen]);
 
@@ -42,23 +45,33 @@ const SideBar = ({ isOpen }: SideBarProps) => {
           )
         )}
       </ul>
-      <div className="mt-28 w-full flex justify-center space-x-5">
-        <button
-          onClick={() => signIn()}
-          type="button"
-          className="text-base font-medium border border-black rounded-md text-black px-5 py-1 hover:bg-black hover:text-white transition-colors"
-        >
-          Sign In
-        </button>
-        <button
-          type="button"
-          className="text-white text-base font-medium bg-blue-500 rounded-md px-5 py-1 hover:bg-blue-600 transition-colors"
-        >
-          Sign Up
-        </button>
-      </div>
+      {status === 'authenticated' ? (
+        <div className="hover:cursor-pointer mt-8 flex flex-col items-center">
+          <Avatar>
+            <AvatarImage src={session?.user?.image || ''} />
+            <AvatarFallback>
+              {session?.user?.name?.charAt(0).toUpperCase() || 'U'}
+            </AvatarFallback>
+          </Avatar>
+        </div>
+      ) : (
+        <div className="mt-28 w-full flex justify-center space-x-5">
+          <button
+            onClick={() => signIn()}
+            type="button"
+            className="text-base font-medium border border-black rounded-md text-black px-5 py-1 hover:bg-black hover:text-white transition-colors"
+          >
+            Sign In
+          </button>
+          <button
+            type="button"
+            className="text-white text-base font-medium bg-blue-500 rounded-md px-5 py-1 hover:bg-blue-600 transition-colors"
+          >
+            Sign Up
+          </button>
+        </div>
+      )}
     </div>
   );
 };
-
 export default SideBar;

@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
-import { signIn } from 'next-auth/react';
-import { TextLoop } from './ui/text-loop';
 import Image from 'next/image';
 import menuIcon from '@public/image/menuIcon.svg';
 import crossIcon from '@public/image/crossIcon.svg';
 import SideBar from './ui/SideBar';
+import { useState } from 'react';
+import { signIn, useSession } from 'next-auth/react';
+import { TextLoop } from './ui/text-loop';
+import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 
 const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
+  const { data: session, status } = useSession();
   return (
     <>
       <nav className="flex flex-row justify-between items-center p-4 border-b border-gray-200 w-full">
@@ -26,17 +27,26 @@ const Header = () => {
             <li className="group-hover:cursor-pointer">About us</li>
           </ul>
         </div>
-        <div className="hidden sm:flex flex-row gap-4">
-          <button
-            onClick={() => signIn()}
-            className=" border border-black rounded-md text-black px-2"
-          >
-            Sign In
-          </button>
-          <button className="text-white bg-blue-500 rounded-md px-2">
-            Sign Up
-          </button>
-        </div>
+        {status === 'authenticated' ? (
+          <Avatar className="hover:cursor-pointer hidden sm:block">
+            <AvatarImage src={session?.user?.image || ''} />
+            <AvatarFallback>
+              {session?.user?.name?.charAt(0).toUpperCase() || 'U'}
+            </AvatarFallback>
+          </Avatar>
+        ) : (
+          <div className="hidden sm:flex flex-row gap-6">
+            <button
+              onClick={() => signIn()}
+              className="border border-black text-sm md:text-base lg:text-base rounded-md py-1 text-black px-2"
+            >
+              Sign In
+            </button>
+            <button className="text-white text-sm md:text-base lg:text-base py-1 bg-blue-500 rounded-md px-2">
+              Sign Up
+            </button>
+          </div>
+        )}
         <div className="flex sm:hidden justify-center items-center">
           {!isSidebarOpen ? (
             <button
@@ -55,7 +65,9 @@ const Header = () => {
           )}
         </div>
       </nav>
-      {isSidebarOpen && <SideBar isOpen={isSidebarOpen} />}
+      {isSidebarOpen && (
+        <SideBar isOpen={isSidebarOpen} status={status} session={session!} />
+      )}
     </>
   );
 };
