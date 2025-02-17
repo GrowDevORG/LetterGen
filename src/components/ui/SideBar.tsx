@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import Image from 'next/image';
 import ArrowOutlined from '@public/image/ArrowOutlined.svg';
-import { signIn } from 'next-auth/react';
+import { signIn, signOut } from 'next-auth/react';
 import { Session } from 'next-auth';
-import { Avatar, AvatarFallback, AvatarImage } from './avatar';
+import { Button } from './button';
+import { LogOut } from 'lucide-react';
 
 interface SideBarProps {
   isOpen: boolean;
@@ -45,14 +46,36 @@ const SideBar = ({ isOpen, status, session }: SideBarProps) => {
           )
         )}
       </ul>
-      {status === 'authenticated' ? (
-        <div className="hover:cursor-pointer mt-8 flex flex-col items-center">
-          <Avatar>
-            <AvatarImage src={session?.user?.image || ''} />
-            <AvatarFallback>
-              {session?.user?.name?.charAt(0).toUpperCase() || 'U'}
-            </AvatarFallback>
-          </Avatar>
+      {status === 'authenticated' && session ? (
+        <div className="hover:cursor-pointer mt-8 flex-col justify-center m-4 space-y-3 items-center">
+          <div className=" flex gap-6">
+            <img
+              className="rounded-full"
+              src={session.user.image || 'https://github.com/shadcn.png'}
+              alt=""
+              width={40}
+              height={40}
+            />
+            <div className="flex flex-col">
+              <span className="text-black">
+                {session?.user?.name || 'john doe'}
+              </span>
+              <span className="text-[#8c8b94]">
+                {session?.user?.email || 'johndoe@gmail.com'}
+              </span>
+            </div>
+          </div>
+          <div>
+            <Button
+              onClick={() => {
+                signOut();
+              }}
+              className="w-full border-[#e0e0e0] bg-white text-black hover:bg-gray-100 group"
+            >
+              {' '}
+              <LogOut className="group-hover:rotate-[-10deg]" /> Log out
+            </Button>
+          </div>
         </div>
       ) : (
         <div className="mt-28 w-full flex justify-center space-x-5">

@@ -5,11 +5,12 @@ import SideBar from './ui/SideBar';
 import { useState } from 'react';
 import { signIn, useSession } from 'next-auth/react';
 import { TextLoop } from './ui/text-loop';
-import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
+import UserDropdown from './user-dropdown';
 
 const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const { data: session, status } = useSession();
+
   return (
     <>
       <nav className="flex flex-row justify-between items-center p-4 border-b border-gray-200 w-full">
@@ -28,12 +29,7 @@ const Header = () => {
           </ul>
         </div>
         {status === 'authenticated' ? (
-          <Avatar className="hover:cursor-pointer hidden sm:block">
-            <AvatarImage src={session?.user?.image || ''} />
-            <AvatarFallback>
-              {session?.user?.name?.charAt(0).toUpperCase() || 'U'}
-            </AvatarFallback>
-          </Avatar>
+          <UserDropdown session={session} />
         ) : (
           <div className="hidden sm:flex flex-row gap-6">
             <button
