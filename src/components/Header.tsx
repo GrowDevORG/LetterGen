@@ -28,12 +28,14 @@ const Header = () => {
           </ul>
         </div>
         {status === 'authenticated' ? (
-          <Avatar className="hover:cursor-pointer">
-            <AvatarImage src={session.user.image!} />
-            <AvatarFallback>CN</AvatarFallback>
+          <Avatar className="hover:cursor-pointer hidden sm:block">
+            <AvatarImage src={session?.user?.image || ''} />
+            <AvatarFallback>
+              {session?.user?.name?.charAt(0).toUpperCase() || 'U'}
+            </AvatarFallback>
           </Avatar>
         ) : (
-          <div className="flex flex-row gap-6">
+          <div className="hidden sm:flex flex-row gap-6">
             <button
               onClick={() => signIn()}
               className="border border-black text-sm md:text-base lg:text-base rounded-md py-1 text-black px-2"
@@ -63,7 +65,9 @@ const Header = () => {
           )}
         </div>
       </nav>
-      {isSidebarOpen && <SideBar isOpen={isSidebarOpen} />}
+      {isSidebarOpen && (
+        <SideBar isOpen={isSidebarOpen} status={status} session={session!} />
+      )}
     </>
   );
 };
