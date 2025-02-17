@@ -3,9 +3,9 @@ import Image from 'next/image';
 
 const HowItWork = () => {
   return (
-    <section className="w-full h-full border-y border-gray-500">
+    <section className="w-full h-full border-y border-gray-600">
       <div className="w-full border-b">
-        <div className="flex flex-col justify-center items-center px-4 sm:px-8 md:px-16 mx-4 sm:mx-8 lg:mx-24 xl:mx-12 3xl:mx-48 border-x border-gray-500 py-8 md:py-16 relative">
+        <div className="flex flex-col justify-center items-center px-4 sm:px-8 md:px-16 mx-4 sm:mx-8 lg:mx-24 xl:mx-12 3xl:mx-48 border-x border-gray-600 py-8 md:py-16 relative">
           <Image
             src={'/image/Rectangle.svg'}
             alt="Rectangle"
