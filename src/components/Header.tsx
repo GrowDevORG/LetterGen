@@ -29,11 +29,11 @@ const Header = () => {
         <div className="hidden sm:flex flex-row gap-4">
           <button
             onClick={() => signIn()}
-            className="text-sm border border-black rounded-md text-black px-2"
+            className=" border border-black rounded-md text-black px-2"
           >
             Sign In
           </button>
-          <button className="text-white text-sm bg-blue-500 rounded-md px-2">
+          <button className="text-white bg-blue-500 rounded-md px-2">
             Sign Up
           </button>
         </div>
