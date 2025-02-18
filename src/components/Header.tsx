@@ -1,15 +1,22 @@
+'use client';
 import Image from 'next/image';
 import menuIcon from '@public/image/menuIcon.svg';
 import crossIcon from '@public/image/crossIcon.svg';
 import SideBar from './ui/SideBar';
 import { useState } from 'react';
-import { signIn, useSession } from 'next-auth/react';
+import { signIn } from 'next-auth/react';
 import { TextLoop } from './ui/text-loop';
 import UserDropdown from './user-dropdown';
+import { Session } from 'next-auth';
 
-const Header = () => {
+const Header = ({
+  session,
+  status,
+}: {
+  session: Session;
+  status: 'loading' | 'authenticated' | 'unauthenticated';
+}) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const { data: session, status } = useSession();
 
   return (
     <>

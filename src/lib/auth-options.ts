@@ -8,7 +8,7 @@ import { PrismaClientInitializationError } from '@prisma/client/runtime/library'
 import { emailSchema, passwordSchema } from '@/schema/credentials-schema';
 import { JWT } from 'next-auth/jwt';
 
-export const authOptions = {
+export const authOptions: NextAuthOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID ?? '',
