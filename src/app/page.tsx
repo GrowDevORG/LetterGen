@@ -7,7 +7,7 @@ import InfoPage from '@/pages/InfoPage';
 import { useSession, signOut } from 'next-auth/react';
 
 export default function Home() {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   if (session) {
     return (
       <>
@@ -20,7 +20,7 @@ export default function Home() {
     <main className="flex flex-col bg-gray-100">
       {/* Not signed in <br />
       <button onClick={() => signIn()}>Sign in</button> */}
-      <HeroSection />
+      <HeroSection session={session!} status={status} />
       <HowItWork />
       <Divider />
       <InfoPage />
