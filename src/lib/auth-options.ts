@@ -67,20 +67,7 @@ export const authOptions: NextAuthOptions = {
           }
 
           if (!user.password) {
-            const hashedPassword = await bcrypt.hash(
-              passwordValidation.data,
-              10
-            );
-
-            const authUser = await prisma.user.update({
-              where: {
-                email: emailValidation.data,
-              },
-              data: {
-                password: hashedPassword,
-              },
-            });
-            return authUser;
+            throw new Error('Login using correct provider');
           }
 
           const passwordVerification = await bcrypt.compare(
