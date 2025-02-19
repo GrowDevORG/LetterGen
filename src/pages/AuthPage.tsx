@@ -1,13 +1,44 @@
+'use client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Github } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { Github, Loader } from 'lucide-react';
 import Image from 'next/image';
+import { signIn } from 'next-auth/react';
+import { useState } from 'react';
 
 export default function Home() {
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [error, setError] = useState<string>('');
+  const [isloading, setIsloading] = useState<boolean>(false);
+
+  const router = useRouter();
+
+  async function handleLogin() {
+    setError('');
+    try {
+      setIsloading(true);
+      const res = await signIn('credentials', {
+        email,
+        password,
+        redirect: false,
+      });
+      if (res?.error) {
+        setError(res.error);
+      } else {
+        router.push('/');
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsloading(false);
+    }
+  }
+
   return (
     <main className="min-h-screen bg-[#001324] flex flex-col items-center justify-center relative overflow-hidden">
-      {/* Decorative Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -rotate-12 bg-blue-600 w-64 h-64 -top-20 -right-16 rounded-3xl" />
         <div className="absolute rotate-12 bg-blue-600 w-96 h-96 -bottom-20 -right-20 rounded-3xl" />
@@ -16,7 +47,6 @@ export default function Home() {
 
       <div className="container mx-auto px-4 py-12 relative">
         <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-          {/* Left Column */}
           <div className="space-y-6">
             <h1 className="text-4xl md:text-6xl font-bold text-white">
               Welcome to{' '}
@@ -52,14 +82,33 @@ export default function Home() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-2">
-                <Input type="email" placeholder="email" className="h-12" />
                 <Input
+                  type="email"
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
+                  placeholder="email"
+                  className="h-12 text-black"
+                />
+                <Input
+                  value={password}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                  }}
                   type="password"
                   placeholder="password"
-                  className="h-12"
+                  className="h-12 text-black"
                 />
-                <Button className="w-full h-12 text-base bg-blue-600 hover:bg-blue-700">
-                  Sign up for free
+                <span className="flex justify-center text-red-500">
+                  {error}
+                </span>
+                <Button
+                  disabled={isloading}
+                  onClick={handleLogin}
+                  className="w-full h-12 text-base bg-blue-600 hover:bg-blue-700"
+                >
+                  {!isloading ? 'Sign up for free' : <Loader />}
                 </Button>
               </div>
 
@@ -76,8 +125,10 @@ export default function Home() {
 
               <div className="space-y-2">
                 <Button
+                  disabled={isloading}
+                  onClick={() => signIn('google')}
                   variant="outline"
-                  className="w-full h-12 text-base font-normal text-black bg-gray-100"
+                  className="w-full h-12 text-base font-normal text-black bg-gray-100 hover:bg-gray-200 hover:text-black"
                 >
                   <Image
                     src="/image/google-logo.png"
@@ -89,6 +140,8 @@ export default function Home() {
                   Sign In with Google
                 </Button>
                 <Button
+                  disabled={isloading}
+                  onClick={() => signIn('github')}
                   variant="outline"
                   className="w-full h-12 text-base font-normal"
                 >

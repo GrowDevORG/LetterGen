@@ -1,13 +1,13 @@
-'use client';
 import Divider from '@/components/Divider';
 import Footer from '@/components/Footer';
 import HeroSection from '@/pages/HeroSection';
 import HowItWork from '@/pages/HowItWork';
 import InfoPage from '@/pages/InfoPage';
-import { useSession } from 'next-auth/react';
+import { getServerSession } from 'next-auth';
 
-export default function Home() {
-  const { data: session, status } = useSession();
+export default async function Home() {
+  const session = await getServerSession();
+  const status = session ? 'authenticated' : 'unauthenticated';
   // if (session) {
   //   return (
   //     <>
