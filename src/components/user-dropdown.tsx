@@ -20,34 +20,31 @@ const UserDropdown: React.FC<UserDropdownProps> = ({ session }) => {
     <div>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          {session && (
+          <Avatar className="hover:cursor-pointer hidden sm:block">
+            <AvatarImage src={session?.user?.image || ''} />
+            <AvatarFallback>
+              {session?.user?.name?.charAt(0).toUpperCase() ||
+                session?.user?.email.charAt(0).toUpperCase()}
+            </AvatarFallback>
+          </Avatar>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="border-none w-full bg-white mr-6 ml-6 -translate-x-12">
+          <DropdownMenuItem className="flex gap-6 items-center focus:bg-transparent ml-4 mr-4">
             <Avatar className="hover:cursor-pointer hidden sm:block">
               <AvatarImage src={session?.user?.image || ''} />
               <AvatarFallback>
-                {session?.user?.name?.charAt(0).toUpperCase() || 'U'}
+                {session?.user?.name?.charAt(0).toUpperCase() ||
+                  session?.user?.email.charAt(0).toUpperCase()}
               </AvatarFallback>
             </Avatar>
-          )}
-        </DropdownMenuTrigger>
-        <DropdownMenuContent className="border-none w-full bg-white mr-4 p-3">
-          <DropdownMenuItem className="flex gap-6 items-center focus:bg-transparent">
-            <img
-              className="rounded-full"
-              src="https://github.com/shadcn.png"
-              alt=""
-              width={40}
-              height={40}
-            />
             <div className="flex flex-col">
               <span className="text-black">
-                {session?.user?.name || 'john doe'}
+                {session?.user?.name || session.user.email.split('@')[0]}
               </span>
-              <span className="text-[#8c8b94]">
-                {session?.user?.email || 'johndoe@gmail.com'}
-              </span>
+              <span className="text-[#8c8b94]">{session?.user?.email}</span>
             </div>
           </DropdownMenuItem>
-          <DropdownMenuItem className="bg-white flex focus:bg-transparent">
+          <DropdownMenuItem className="bg-white flex focus:bg-transparent ml-4 mr-4">
             <Button
               onClick={() => {
                 signOut();
