@@ -9,62 +9,75 @@ import ExperienceForm from './exp-form';
 import EducationForm from './education-form';
 import TargetForm from './target-form';
 import ProgressIndicator from './progress-indicator';
+import { useFormContext } from '@/context/formcontext';
+import { useRouter } from 'next/navigation';
 
-interface Experience {
-  company: string;
-  role: string;
-  duration: string;
-  description: string;
-}
+// interface Experience {
+//   company: string;
+//   role: string;
+//   duration: string;
+//   description: string;
+// }
 
-interface Education {
-  degree: string;
-  institution: string;
-  year: string;
-}
+// interface Education {
+//   degree: string;
+//   institution: string;
+//   year: string;
+// }
 
-interface FormData {
-  name: string;
-  age: number | null;
-  skills: string[];
-  experience: Experience[];
-  education: Education;
-  targetRole: string;
-  targetCompany: string;
-}
+// interface FormData {
+//   name: string;
+//   age: number | null;
+//   skills: string[];
+//   experience: Experience[];
+//   education: Education;
+//   targetRole: string;
+//   targetCompany: string;
+// }
 
 export default function DashboardPage({ session }: { session: Session }) {
   const [step, setStep] = useState(1);
-  const [formData, setFormData] = useState<FormData>({
-    name: '',
-    age: null,
-    skills: [],
-    experience: [
-      {
-        company: '',
-        role: '',
-        duration: '',
-        description: '',
-      },
-    ],
-    education: {
-      degree: '',
-      institution: '',
-      year: '',
-    },
-    targetRole: '',
-    targetCompany: '',
-  });
+  const router = useRouter();
+  const { formData, updateFormData } = useFormContext();
+  // const [formData, setFormData] = useState<FormData>({
+  //   name: '',
+  //   age: null,
+  //   skills: [],
+  //   experience: [
+  //     {
+  //       company: '',
+  //       role: '',
+  //       duration: '',
+  //       description: '',
+  //     },
+  //   ],
+  //   education: {
+  //     degree: '',
+  //     institution: '',
+  //     year: '',
+  //   },
+  //   targetRole: '',
+  //   targetCompany: '',
+  // });
 
-  const updateFormData = (
-    field: keyof FormData,
-    value: FormData[keyof FormData]
-  ) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
-  };
+  // const updateFormData = (
+  //   field: keyof FormData,
+  //   value: FormData[keyof FormData]
+  // ) => {
+  //   setFormData((prev) => ({ ...prev, [field]: value }));
+  // };
 
   const handleNext = () => {
-    if (step < 5) setStep(step + 1);
+    if (step < 5) {
+      setStep(step + 1);
+    } else {
+      handleSubmit();
+    }
+  };
+
+  const handleSubmit = () => {
+    console.log('Form Data:', formData);
+    router.push('/result');
   };
 
   const handleBack = () => {
@@ -108,7 +121,9 @@ export default function DashboardPage({ session }: { session: Session }) {
           <TargetForm
             targetRole={formData.targetRole}
             targetCompany={formData.targetCompany}
-            updateTarget={(role, company) => {
+            recipientName={formData.recipientName}
+            updateTarget={(recipientName, role, company) => {
+              updateFormData('recipientName', recipientName);
               updateFormData('targetRole', role);
               updateFormData('targetCompany', company);
             }}

@@ -23,10 +23,13 @@ interface FormData {
   education: Education;
   targetRole: string;
   targetCompany: string;
+  recipientName: string;
 }
 
 interface FormContextProps {
   formData: FormData;
+  coverLetter: string;
+  setCoverLetter: (value: string) => void;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   updateFormData: (field: keyof FormData, value: any) => void;
   setFormData: (data: FormData) => void;
@@ -35,6 +38,7 @@ interface FormContextProps {
 const FormContext = createContext<FormContextProps | undefined>(undefined);
 
 export const FormProvider = ({ children }: { children: ReactNode }) => {
+  const [coverLetter, setCoverLetter] = useState('');
   const [formData, setFormData] = useState<FormData>({
     name: '',
     age: null,
@@ -54,6 +58,7 @@ export const FormProvider = ({ children }: { children: ReactNode }) => {
     },
     targetRole: '',
     targetCompany: '',
+    recipientName: '',
   });
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const updateFormData = (field: keyof FormData, value: any) => {
@@ -61,7 +66,15 @@ export const FormProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <FormContext.Provider value={{ formData, updateFormData, setFormData }}>
+    <FormContext.Provider
+      value={{
+        formData,
+        updateFormData,
+        setFormData,
+        coverLetter,
+        setCoverLetter,
+      }}
+    >
       {children}
     </FormContext.Provider>
   );
