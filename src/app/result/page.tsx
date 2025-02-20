@@ -162,13 +162,13 @@ const Page = () => {
           >
             Download PDF
           </Button>
-          {/* <Button
+          <Button
             size="lg"
             className="w-full max-w-md bg-green-500 hover:bg-green-600 text-white"
             onClick={handleSubmit}
           >
-            Submit
-          </Button> */}
+            Click to generate cover letter
+          </Button>
         </div>
       </main>
     </div>
