@@ -2,6 +2,7 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 import { NextResponse } from 'next/server';
 
 interface CoverLetterRequest {
+  name: string;
   age: number;
   skills: string[];
   experience: {
@@ -45,6 +46,7 @@ export async function POST(request: Request) {
     - **Company:** ${body.targetCompany}
 
     ##Background:
+    - **Name:** ${body.name}
    - **Age:** ${body.age}
    - **Skills:** ${body.skills.join(', ')}
 
