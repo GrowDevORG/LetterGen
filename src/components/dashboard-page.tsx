@@ -1,14 +1,14 @@
 'use client';
-
 import { useState } from 'react';
-import PersonalInfo from '../../components/prsnl-info';
-import SkillsForm from '../../components/skills-form';
-import ExperienceForm from '../../components/exp-form';
-import EducationForm from '../../components/education-form';
-import TargetForm from '../../components/target-form';
-import ProgressIndicator from '../../components/progress-indicator';
 import { Button } from '@/components/ui/button';
-import Image from 'next/image';
+import { Session } from 'next-auth';
+import UserDropdown from '@/components/user-dropdown';
+import PersonalInfo from './prsnl-info';
+import SkillsForm from './skills-form';
+import ExperienceForm from './exp-form';
+import EducationForm from './education-form';
+import TargetForm from './target-form';
+import ProgressIndicator from './progress-indicator';
 
 interface Experience {
   company: string;
@@ -32,7 +32,7 @@ interface FormData {
   targetCompany: string;
 }
 
-export default function Page() {
+export default function DashboardPage({ session }: { session: Session }) {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState<FormData>({
     age: null,
@@ -54,7 +54,6 @@ export default function Page() {
     targetCompany: '',
   });
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const updateFormData = (field: keyof FormData, value: any) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
@@ -121,12 +120,7 @@ export default function Page() {
           <div className="flex items-center gap-2">
             <span>Abhishek</span>
             <div className="relative w-10 h-10 rounded-full overflow-hidden">
-              <Image
-                src="/image/avatar.png"
-                alt="Profile"
-                fill
-                className="object-cover"
-              />
+              <UserDropdown session={session!} />
             </div>
           </div>
         </div>
