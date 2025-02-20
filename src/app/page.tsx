@@ -4,6 +4,7 @@ import HeroSection from '@/pages/HeroSection';
 import HowItWork from '@/pages/HowItWork';
 import InfoPage from '@/pages/InfoPage';
 import { getServerSession } from 'next-auth';
+import { ToastContainer } from 'react-toastify';
 
 export default async function Home() {
   const session = await getServerSession();
@@ -26,6 +27,7 @@ export default async function Home() {
       <InfoPage />
       <Divider />
       <Footer />
+      <ToastContainer />
     </main>
   );
 }
