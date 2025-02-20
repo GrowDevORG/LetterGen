@@ -14,7 +14,8 @@ const InfoPage = () => {
             src={'/image/aboutUs-image.png'}
             width={500}
             height={500}
-            alt="image"
+            alt="Illustration of AI-powered job application process"
+            title="AI-powered job application assistance"
             className="w-full max-w-xs md:max-w-sm lg:max-w-md"
           />
         </div>

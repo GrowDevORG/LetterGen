@@ -52,7 +52,7 @@ const SideBar = ({ isOpen, status, session }: SideBarProps) => {
             <img
               className="rounded-full"
               src={session.user.image || 'https://github.com/shadcn.png'}
-              alt=""
+              alt="user image"
               width={40}
               height={40}
             />
