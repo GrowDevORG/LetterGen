@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     site: 'https://x.com/Krey_yon',
     creator: 'https://x.com/Krey_yon',
-    images: ['https://ibb.co/gbBB96sj'],
+    images: ['https://lettergen.kreyon.in/image/OG_Image_Shared.png'],
   },
   robots: {
     index: true,
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
       url: 'https://lettergen.kreyon.in',
       description:
         'Craft perfect cover letters in seconds with AI. Personalized, professional cover letters tailored to your skills and job applications—instantly!',
-      image: 'https://ibb.co/gbBB96sj',
+      image: 'https://lettergen.kreyon.in/image/OG_Image_Shared.png',
       author: {
         '@type': 'Person',
         name: 'Vikas',
