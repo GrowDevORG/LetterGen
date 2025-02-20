@@ -132,7 +132,7 @@ export default function Home() {
                 >
                   <Image
                     src="/image/google-logo.png"
-                    alt="Google"
+                    alt="Google Logo"
                     width={20}
                     height={20}
                     className="mr-2"

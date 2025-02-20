@@ -54,7 +54,10 @@ export default function DashboardPage({ session }: { session: Session }) {
     targetCompany: '',
   });
 
-  const updateFormData = (field: keyof FormData, value: any) => {
+  const updateFormData = (
+    field: keyof FormData,
+    value: FormData[keyof FormData]
+  ) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 

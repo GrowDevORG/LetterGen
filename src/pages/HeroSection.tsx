@@ -45,7 +45,7 @@ const HeroSection = ({
         </button>
         <Image
           src="/image/hero-image.png"
-          alt="hero"
+          alt="Illustration of AI-generated cover letter creation"
           width={500}
           height={500}
         />
