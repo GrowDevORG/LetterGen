@@ -24,6 +24,7 @@ interface Education {
 }
 
 interface FormData {
+  name: string;
   age: number | null;
   skills: string[];
   experience: Experience[];
@@ -35,6 +36,7 @@ interface FormData {
 export default function DashboardPage({ session }: { session: Session }) {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState<FormData>({
+    name: '',
     age: null,
     skills: [],
     experience: [
@@ -74,8 +76,10 @@ export default function DashboardPage({ session }: { session: Session }) {
       case 1:
         return (
           <PersonalInfo
+            name={formData.name}
             age={formData.age}
             updateAge={(age) => updateFormData('age', age)}
+            updateName={(name) => updateFormData('name', name)}
           />
         );
       case 2:
