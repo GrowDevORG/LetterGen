@@ -18,6 +18,7 @@ interface CoverLetterRequest {
   };
   targetRole: string;
   targetCompany: string;
+  recipientName: string;
 }
 
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GEMINI_API || '');

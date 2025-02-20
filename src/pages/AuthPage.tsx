@@ -126,7 +126,7 @@ export default function Home() {
               <div className="space-y-2">
                 <Button
                   disabled={isloading}
-                  onClick={() => signIn('google')}
+                  onClick={() => signIn('google', { callbackUrl: '/' })}
                   variant="outline"
                   className="w-full h-12 text-base font-normal text-black bg-gray-100 hover:bg-gray-200 hover:text-black"
                 >
@@ -141,7 +141,7 @@ export default function Home() {
                 </Button>
                 <Button
                   disabled={isloading}
-                  onClick={() => signIn('github')}
+                  onClick={() => signIn('github', { callbackUrl: '/' })}
                   variant="outline"
                   className="w-full h-12 text-base font-normal"
                 >

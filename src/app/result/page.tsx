@@ -1,5 +1,5 @@
 'use client';
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useFormContext } from '@/context/formcontext';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -7,7 +7,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { useRouter } from 'next/navigation';
 
 const Page = () => {
-  const { formData } = useFormContext();
+  const { formData, setCoverLetter, coverLetter } = useFormContext();
   const imageRef = useRef(null);
   const router = useRouter();
 
@@ -28,11 +28,52 @@ const Page = () => {
     }
   };
 
+  const fetchCoverLetter = async () => {
+    try {
+      const response = await fetch('/api/letter-gen', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setCoverLetter(data.coverLetter);
+      } else {
+        console.error('Failed to fetch cover letter');
+      }
+    } catch (error) {
+      console.error('Error fetching cover letter:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchCoverLetter();
+  });
+
+  const currentDate = new Date();
+  const formattedDate = currentDate.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+
+  const navigateToHomePage = () => {
+    router.push('/');
+  };
+
   return (
     <div className="min-h-screen bg-white">
       <header className="border-b">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-3xl font-bold text-blue-500">LetterGen</h1>
+          <h1
+            className="text-3xl font-bold text-blue-500"
+            onClick={navigateToHomePage}
+          >
+            LetterGen
+          </h1>
           <div className="flex items-center gap-2">
             <span className="text-sm font-medium">Abhishek</span>
             <Avatar>
@@ -58,55 +99,38 @@ const Page = () => {
               <div className="relative bg-white p-8 md:p-12">
                 {/* Header */}
                 <h1 className="mb-16 text-center text-4xl font-bold tracking-wider text-black md:text-5xl">
-                  KYRIE PETRAKIS
+                  {formData.name}
                 </h1>
 
                 {/* Date */}
                 <div className="mb-8">
-                  <p className="text-gray-900">April 27, 2023</p>
+                  <p className="text-gray-900">{formattedDate}</p>
                 </div>
 
                 {/* Recipient */}
                 <div className="mb-8">
                   <h2 className="text-3xl font-normal text-gray-900">
-                    Sacha Dubois
+                    {formData.recipientName}
                   </h2>
                 </div>
 
                 {/* Greeting */}
                 <div className="mb-6">
-                  <p className="text-gray-900">Dear Mr. Sacha Dubois,</p>
+                  <p className="text-gray-900">
+                    Dear {formData.recipientName},
+                  </p>
                 </div>
 
                 {/* Body Paragraphs */}
                 <div className="space-y-6">
-                  <p className="text-gray-800">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Quisque non elit mauris. Cras euismod, metus ac finibus
-                    finibus, felis dui suscipit purus, a maximus leo ligula at
-                    dolor. Morbi et malesuada purus.
-                  </p>
-
-                  <p className="text-gray-800">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Quisque non elit mauris. Cras euismod, metus ac finibus
-                    finibus, felis dui suscipit purus, a maximus leo ligula at
-                    dolor. Morbi et malesuada purus. Phasellus a lacus sit amet
-                    urna tempor sollicitudin. Cras pretium tempor elit blandit
-                    egestas. Donec sed dignissim augue. Suspendisse ac vulputate
-                    leo. Cras aliquet nunc ac velit cursus viverra. In hac
-                    habitasse platea dictumst. Nam tortor urna, semper ac nulla
-                    id, porttitor semper felis. Phasellus blandit eros viverra,
-                    ultricies nibh nec, viverra ipsum. Ut nec gravida massa, eu
-                    convallis est.
-                  </p>
+                  <p className="text-gray-800">{coverLetter}</p>
                 </div>
 
                 {/* Closing */}
                 <div className="mt-12 space-y-6">
                   <p className="text-gray-900">Best Regards,</p>
                   <p className="text-xl font-semibold text-gray-900">
-                    Kyrie Petrakis
+                    {formData.name}
                   </p>
                 </div>
               </div>
