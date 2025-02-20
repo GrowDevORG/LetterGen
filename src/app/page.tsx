@@ -4,19 +4,17 @@ import HeroSection from '@/pages/HeroSection';
 import HowItWork from '@/pages/HowItWork';
 import InfoPage from '@/pages/InfoPage';
 import { getServerSession } from 'next-auth';
+import { redirect } from 'next/navigation';
 import { ToastContainer } from 'react-toastify';
 
 export default async function Home() {
   const session = await getServerSession();
   const status = session ? 'authenticated' : 'unauthenticated';
-  // if (session) {
-  //   return (
-  //     <>
-  //       Signed in as {session.user.email} <br />
-  //       <button onClick={() => signOut()}>Sign out</button>
-  //     </>
-  //   );
-  // }
+
+  if (session) {
+    redirect('/dashboard');
+  }
+
   return (
     <main className="flex flex-col bg-gray-100">
       {/* Not signed in <br />
