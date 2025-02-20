@@ -1,8 +1,11 @@
+'use client';
 import React from 'react';
 import Image from 'next/image';
 import Header from '@/components/Header';
 import { MoveRight } from 'lucide-react';
 import { Session } from 'next-auth';
+import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
 
 const HeroSection = ({
   session,
@@ -11,6 +14,15 @@ const HeroSection = ({
   session: Session;
   status: 'loading' | 'authenticated' | 'unauthenticated';
 }) => {
+  const router = useRouter();
+  const handleGetStarted = () => {
+    if (status === 'authenticated') {
+      router.push('/dashboard');
+    } else {
+      toast('Please log in to continue.');
+    }
+  };
+
   return (
     <section className="bg-gray-100 flex flex-col bg-radial-gradient overflow-x-hidden">
       <Header session={session} status={status} />
@@ -24,7 +36,10 @@ const HeroSection = ({
           tailored to your skills, <br /> experience, and the job you&apos;re
           applying for—instantly!
         </p>
-        <button className="bg-blue-500 text-white font-extralight px-4 py-2 transition-all duration-150 rounded-sm mt-4 group hover:scale-105 hover:bg-blue-600">
+        <button
+          className="bg-blue-500 text-white font-extralight px-4 py-2 transition-all duration-150 rounded-sm mt-4 group hover:scale-105 hover:bg-blue-600"
+          onClick={handleGetStarted}
+        >
           Get started{' '}
           <MoveRight className="inline ml-1 duration-150 group-hover:translate-x-2" />
         </button>
