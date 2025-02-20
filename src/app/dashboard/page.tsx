@@ -15,7 +15,7 @@ export default async function Page() {
   const session = await getServerSession();
 
   if (!session) {
-    redirect('/auth');
+    redirect('/login');
   }
 
   return <DashboardPage session={session} />;
