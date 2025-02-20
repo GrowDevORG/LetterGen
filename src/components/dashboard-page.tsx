@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Session } from 'next-auth';
 import UserDropdown from '@/components/user-dropdown';
@@ -38,7 +38,7 @@ import { useRouter } from 'next/navigation';
 export default function DashboardPage({ session }: { session: Session }) {
   const [step, setStep] = useState(1);
   const router = useRouter();
-  const { formData, updateFormData } = useFormContext();
+  const { formData, updateFormData, setCoverLetter } = useFormContext();
   // const [formData, setFormData] = useState<FormData>({
   //   name: '',
   //   age: null,
@@ -83,6 +83,31 @@ export default function DashboardPage({ session }: { session: Session }) {
   const handleBack = () => {
     if (step > 1) setStep(step - 1);
   };
+
+  const fetchCoverLetter = async () => {
+    try {
+      const response = await fetch('/api/letter-gen', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setCoverLetter(data.coverLetter);
+      } else {
+        console.error('Failed to fetch cover letter');
+      }
+    } catch (error) {
+      console.error('Error fetching cover letter:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchCoverLetter();
+  }, [handleSubmit]);
 
   const renderStep = () => {
     switch (step) {

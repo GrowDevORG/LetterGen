@@ -1,5 +1,5 @@
 'use client';
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { useFormContext } from '@/context/formcontext';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -10,6 +10,7 @@ const Page = () => {
   const { formData, setCoverLetter, coverLetter } = useFormContext();
   const imageRef = useRef(null);
   const router = useRouter();
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleAnotherOne = () => {
     router.push('/dashboard');
@@ -50,8 +51,15 @@ const Page = () => {
   };
 
   useEffect(() => {
-    fetchCoverLetter();
-  });
+    if (isSubmitted) {
+      fetchCoverLetter();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSubmitted]);
+
+  const handleSubmit = () => {
+    setIsSubmitted(true);
+  };
 
   const currentDate = new Date();
   const formattedDate = currentDate.toLocaleDateString('en-US', {
@@ -69,7 +77,7 @@ const Page = () => {
       <header className="border-b">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <h1
-            className="text-3xl font-bold text-blue-500"
+            className="text-3xl font-bold text-blue-500 cursor-pointer"
             onClick={navigateToHomePage}
           >
             LetterGen
@@ -154,6 +162,13 @@ const Page = () => {
           >
             Download PDF
           </Button>
+          {/* <Button
+            size="lg"
+            className="w-full max-w-md bg-green-500 hover:bg-green-600 text-white"
+            onClick={handleSubmit}
+          >
+            Submit
+          </Button> */}
         </div>
       </main>
     </div>

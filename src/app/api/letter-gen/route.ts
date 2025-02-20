@@ -73,6 +73,7 @@ export async function POST(request: Request) {
 - Atleast 200 words
 - Avoid using any placeholder details such as [Your Name],[Platform],[responsibilities] . The generated cover letter must contain actual details.
 - Ensure proper spacing throughout the cover letter and no newline characters : "\n" or "\" in the response anywhere.
+- use less than 200 characters
 - Avoid any text enclosed in []`;
     const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
     const result = await model.generateContent([prompt]);
