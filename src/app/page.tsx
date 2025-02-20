@@ -9,14 +9,7 @@ import { ToastContainer } from 'react-toastify';
 export default async function Home() {
   const session = await getServerSession();
   const status = session ? 'authenticated' : 'unauthenticated';
-  // if (session) {
-  //   return (
-  //     <>
-  //       Signed in as {session.user.email} <br />
-  //       <button onClick={() => signOut()}>Sign out</button>
-  //     </>
-  //   );
-  // }
+
   return (
     <main className="flex flex-col bg-gray-100">
       {/* Not signed in <br />
