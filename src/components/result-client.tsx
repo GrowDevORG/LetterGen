@@ -33,6 +33,7 @@ const ResultClient = ({ session }: { session: Session }) => {
   };
 
   const fetchCoverLetter = async () => {
+    console.log(formData);
     try {
       // setLoading(true);
       const response = await fetch('/api/letter-gen', {
