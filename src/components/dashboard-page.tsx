@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Session } from 'next-auth';
 import UserDropdown from '@/components/user-dropdown';
@@ -37,6 +37,7 @@ import { useRouter } from 'next/navigation';
 
 export default function DashboardPage({ session }: { session: Session }) {
   const [step, setStep] = useState(1);
+  const [ToLocalStorage, setToLocalStorage] = useState(false);
   const router = useRouter();
   const { formData, updateFormData } = useFormContext();
   // const [formData, setFormData] = useState<FormData>({
@@ -75,7 +76,16 @@ export default function DashboardPage({ session }: { session: Session }) {
     }
   };
 
+  // Save formData to localStorage when shouldSave is true
+  useEffect(() => {
+    if (ToLocalStorage) {
+      localStorage.setItem('formData', JSON.stringify(formData));
+      setToLocalStorage(false); // Reset after saving
+    }
+  }, [ToLocalStorage, formData]);
+
   const handleSubmit = () => {
+    setToLocalStorage(true);
     console.log('Form Data:', formData);
     router.push('/result');
   };
