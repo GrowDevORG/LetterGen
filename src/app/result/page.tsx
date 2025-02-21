@@ -1,6 +1,7 @@
 import ResultClient from '@/components/result-client';
 import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';
+import { FormProvider } from '@/context/formcontext';
 
 const Page = async () => {
   const session = await getServerSession();
@@ -9,7 +10,11 @@ const Page = async () => {
     redirect('/login');
   }
 
-  <ResultClient session={session} />;
+  return (
+    <FormProvider>
+      <ResultClient session={session} />
+    </FormProvider>
+  );
 };
 
 export default Page;
