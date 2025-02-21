@@ -9,7 +9,7 @@ const Page = async () => {
     redirect('/login');
   }
 
-  <ResultClient session={session} />;
+  return <ResultClient session={session} />;
 };
 
 export default Page;
