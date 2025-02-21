@@ -13,7 +13,11 @@ const ResultClient = ({ session }: { session: Session }) => {
   const imageRef = useRef(null);
   const router = useRouter();
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const localData = localStorage.getItem('formData')
+    ? JSON.parse(localStorage.getItem('formData') as string)
+    : null;
   // const [loading, setLoading] = useState(false);
+  console.log(localData.name);
 
   const handleAnotherOne = () => {
     router.push('/dashboard');
@@ -33,7 +37,6 @@ const ResultClient = ({ session }: { session: Session }) => {
   };
 
   const fetchCoverLetter = async () => {
-    console.log(formData);
     try {
       // setLoading(true);
       const response = await fetch('/api/letter-gen', {
@@ -41,7 +44,7 @@ const ResultClient = ({ session }: { session: Session }) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: localData ? JSON.stringify(localData) : JSON.stringify(formData),
       });
 
       if (response.ok) {
@@ -76,6 +79,7 @@ const ResultClient = ({ session }: { session: Session }) => {
   });
 
   const navigateToHomePage = () => {
+    localStorage.removeItem('formData');
     setCoverLetter('');
     router.push('/');
   };
@@ -113,7 +117,7 @@ const ResultClient = ({ session }: { session: Session }) => {
                 <div className="relative bg-white p-8 md:p-12">
                   {/* Header */}
                   <h1 className="mb-16 text-center text-4xl font-bold tracking-wider text-black md:text-5xl">
-                    {formData.name}
+                    {localData?.name}
                   </h1>
 
                   {/* Date */}
@@ -124,14 +128,14 @@ const ResultClient = ({ session }: { session: Session }) => {
                   {/* Recipient */}
                   <div className="mb-8">
                     <h2 className="text-3xl font-normal text-gray-900">
-                      {formData.recipientName}
+                      {localData.recipientName}
                     </h2>
                   </div>
 
                   {/* Greeting */}
                   <div className="mb-6">
                     <p className="text-gray-900">
-                      Dear {formData.recipientName},
+                      Dear {localData.recipientName},
                     </p>
                   </div>
 
@@ -144,7 +148,7 @@ const ResultClient = ({ session }: { session: Session }) => {
                   <div className="mt-12 space-y-6">
                     <p className="text-gray-900">Best Regards,</p>
                     <p className="text-xl font-semibold text-gray-900">
-                      {formData.name}
+                      {localData.name}
                     </p>
                   </div>
                 </div>
