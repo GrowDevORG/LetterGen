@@ -79,6 +79,7 @@ const ResultClient = ({ session }: { session: Session }) => {
   });
 
   const navigateToHomePage = () => {
+    localStorage.removeItem('formData');
     setCoverLetter('');
     router.push('/');
   };
