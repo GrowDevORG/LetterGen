@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 /* Scrollbar styles */
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   width: 6px;
 }
 
@@ -18,7 +18,7 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgb(59, 130, 246);
-}
+} */
 
 .wave {
   position: absolute;
