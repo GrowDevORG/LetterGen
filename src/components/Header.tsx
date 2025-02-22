@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import menuIcon from '@public/image/menuIcon.svg';
 import crossIcon from '@public/image/crossIcon.svg';
-import SideBar from './ui/SideBar';
+// import SideBar from './ui/SideBar';
 import { useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { TextLoop } from './ui/text-loop';
@@ -45,7 +45,10 @@ const Header = ({
             >
               Sign In
             </button>
-            <button className="text-white text-sm md:text-base lg:text-base py-1 bg-blue-500 rounded-md px-2">
+            <button
+              onClick={() => signIn()}
+              className="text-white text-sm md:text-base lg:text-base py-1 bg-blue-500 rounded-md px-2"
+            >
               Sign Up
             </button>
           </div>
@@ -68,9 +71,9 @@ const Header = ({
           )}
         </div>
       </nav>
-      {isSidebarOpen && (
+      {/* {isSidebarOpen && (
         <SideBar isOpen={isSidebarOpen} status={status} session={session!} />
-      )}
+      )} */}
     </>
   );
 };
