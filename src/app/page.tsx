@@ -20,7 +20,7 @@ export default async function Home() {
       <InfoPage />
       <Divider />
       <Footer />
-      <ToastContainer />
+      <ToastContainer position="bottom-right" autoClose={5000} />
     </main>
   );
 }

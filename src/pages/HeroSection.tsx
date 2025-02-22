@@ -19,7 +19,8 @@ const HeroSection = ({
     if (status === 'authenticated') {
       router.push('/dashboard');
     } else {
-      toast('Please log in to continue.');
+      router.push('/auth');
+      toast.error('Please log in to continue.');
     }
   };
 

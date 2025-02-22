@@ -11,6 +11,7 @@ import TargetForm from './target-form';
 import ProgressIndicator from './progress-indicator';
 import { useFormContext } from '@/context/formcontext';
 import { useRouter } from 'next/navigation';
+import { toast, ToastContainer } from 'react-toastify';
 
 // interface Experience {
 //   company: string;
@@ -85,9 +86,25 @@ export default function DashboardPage({ session }: { session: Session }) {
   }, [ToLocalStorage, formData]);
 
   const handleSubmit = () => {
-    setToLocalStorage(true);
-    console.log('Form Data:', formData);
-    router.push('/result');
+    console.log(formData);
+    if (
+      formData.name &&
+      formData.age &&
+      formData.skills.length > 0 &&
+      formData.experience.length > 0 &&
+      formData.education.degree &&
+      formData.education.institution &&
+      formData.education.year &&
+      formData.targetRole &&
+      formData.targetCompany &&
+      formData.recipientName
+    ) {
+      console.log('Form submitted:', formData);
+      setToLocalStorage(true);
+      router.push('/result');
+    } else {
+      toast.error('Please fill all the fields');
+    }
   };
 
   const handleBack = () => {
@@ -209,6 +226,7 @@ export default function DashboardPage({ session }: { session: Session }) {
           </div>
         </main>
       </div>
+      <ToastContainer position="bottom-right" autoClose={5000} />
     </div>
   );
 }

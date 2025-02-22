@@ -77,7 +77,7 @@ export default function Home() {
           <Card className="w-full max-w-md bg-gray-100 mx-auto">
             <CardHeader>
               <CardTitle className="text-2xl text-center text-black">
-                Sign Up
+                Sign In
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">

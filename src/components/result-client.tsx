@@ -17,9 +17,10 @@ const ResultClient = ({ session }: { session: Session }) => {
     ? JSON.parse(localStorage.getItem('formData') as string)
     : null;
   // const [loading, setLoading] = useState(false);
-  console.log(localData.name);
 
   const handleAnotherOne = () => {
+    localStorage.removeItem('formData');
+    setCoverLetter('');
     router.push('/dashboard');
   };
 
