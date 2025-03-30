@@ -25,15 +25,30 @@ const ResultClient = ({ session }: { session: Session }) => {
   };
 
   const handleDownloadPDF = async () => {
-    console.log(formData);
     if (imageRef.current) {
-      const html2pdf = (await import('html2pdf.js')).default;
-      const opt = {
-        filename: 'coverletter.pdf',
-        image: { type: 'jpeg', quality: 0.98 },
-        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
-      };
-      html2pdf().from(imageRef.current).set(opt).save();
+      try {
+        // Apply a small delay to ensure content is fully rendered
+        await new Promise((resolve) => setTimeout(resolve, 500));
+
+        const html2pdf = (await import('html2pdf.js')).default;
+        const opt = {
+          margin: [0.5, 0.5, 0.5, 0.5],
+          filename: 'coverletter.pdf',
+          image: { type: 'jpeg', quality: 1 },
+          html2canvas: {
+            scale: 2,
+            logging: true,
+            useCORS: true,
+            allowTaint: true,
+          },
+          jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+        };
+
+        await html2pdf().from(imageRef.current).set(opt).save();
+      } catch (error) {
+        console.error('PDF generation failed:', error);
+        alert('There was a problem generating your PDF. Please try again.');
+      }
     }
   };
 
